@@ -218,3 +218,10 @@ if (rentalForm) rentalForm.addEventListener('submit', (event) => {
   window.open(whatsappUrl(`Hello REND, I would like to request ${tool || 'a tool rental'}.`), '_blank', 'noopener');
   rentalForm.reset();
 });
+
+// Keep the GSM XPAND footer link consistent across every page.
+document.querySelectorAll('.footer-links a').forEach((link) => {
+  if (link.textContent.trim() === 'Visit GSM XPAND online') {
+    link.href = 'https://www.gsmxpand.unaux.com';
+  }
+});
