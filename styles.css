@@ -15,3 +15,480 @@
 @media(max-width:900px){.main-nav,.navbar{gap:14px}.header-cta{display:none}.section-pad{padding:85px 6vw}.hero{grid-template-columns:1fr;min-height:auto;gap:70px}.hero-visual{width:90%;justify-self:end}.tool-grid{grid-template-columns:repeat(2,1fr)}.rent-section{gap:45px}.contact-section{grid-template-columns:35px 1fr 1fr;gap:25px}}
 @media(max-width:650px){.site-header{height:68px;padding:0 6vw;justify-content:space-between}.menu-toggle{display:block;border:1px solid var(--line);background:transparent;color:var(--paper);padding:9px 11px;font:10px var(--font-mono);text-transform:uppercase}.main-nav,.navbar{display:none;position:absolute;top:68px;left:0;right:0;background:var(--ink);border-bottom:1px solid var(--line);padding:20px 6vw;flex-direction:column;gap:20px}.main-nav.open,.navbar.open{display:flex}.section-pad{padding:72px 6vw}.hero{padding-top:75px}.hero-visual{height:320px;width:100%}.device-card{width:72%}.hero-actions{flex-wrap:wrap;gap:20px}.section-heading{display:block;margin-bottom:45px}.section-heading>p{margin-top:25px}.catalog-toolbar{display:block}.tool-search{margin:14px 0}.tool-search-open .tool-search input{width:min(220px,calc(100vw - 110px))}.filter-group{overflow:auto;margin-bottom:14px}.availability{display:block}.tool-grid{grid-template-columns:1fr 1fr;gap:2px}.tool-card{padding:16px;min-height:215px}.tool-card-media{height:120px}.tool-card h3{font-size:16px}.tool-card p{font-size:11px}.rent-section{display:block}.rental-form{margin-top:45px;padding:25px}.contact-section{display:block}.contact-hours{border-left:0;border-top:1px solid var(--line);padding:25px 0 0;margin-top:45px}.site-footer{padding-right:80px;grid-template-columns:1fr auto;grid-template-rows:auto auto auto}.site-footer>.brand{grid-column:1;grid-row:1 / span 2}.site-footer p{display:none}.footer-links{grid-column:2;grid-row:1 / span 2;align-items:flex-start;flex-direction:column;gap:8px}.footer-pages{grid-column:1 / span 2;grid-row:3;justify-content:flex-start;flex-wrap:wrap;white-space:normal;gap:8px 13px}.site-footer>.mono{grid-column:1 / span 2;grid-row:4}.tool-detail-grid{grid-template-columns:1fr;gap:48px}.tool-detail{padding-top:45px}.tool-detail-top{margin-bottom:50px}.official-download{align-items:flex-start;padding:16px}.price-grid{grid-template-columns:1fr!important}.header{flex-direction:column;gap:15px}.navbar{width:100%;justify-content:center;flex-wrap:wrap}.hero{min-height:380px;padding:60px 20px}.price-grid{padding:0 20px}.contact-cta{margin:20px 5% 60px!important;flex-direction:column;align-items:flex-start}}
 @media(max-width:370px){.tool-grid{grid-template-columns:1fr}.hero-visual{height:280px}}
+
+/* =========================
+   REND TOOLS - PRICES PAGE
+   ========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #080b10;
+    color: #ffffff;
+    line-height: 1.6;
+}
+
+
+/* =========================
+   HEADER
+   ========================= */
+
+.header {
+    width: 100%;
+    padding: 18px 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background: #090c11;
+    border-bottom: 1px solid #1e242d;
+
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+
+    font-size: 25px;
+    font-weight: 900;
+    letter-spacing: 1px;
+}
+
+.logo span {
+    color: #00aaff;
+}
+
+.logo small {
+    color: #ffffff;
+    font-size: 11px;
+    letter-spacing: 2px;
+}
+
+
+/* NAVIGATION */
+
+.navbar {
+    display: flex;
+    gap: 25px;
+}
+
+.navbar a {
+    color: #c7ccd3;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+
+    transition: 0.3s;
+}
+
+.navbar a:hover,
+.navbar a.active {
+    color: #00aaff;
+}
+
+
+/* =========================
+   HERO
+   ========================= */
+
+.hero {
+    min-height: 430px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    padding: 70px 20px;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(0, 170, 255, 0.16),
+            transparent 55%
+        ),
+        #080b10;
+}
+
+.hero-content {
+    max-width: 750px;
+}
+
+.badge {
+    display: inline-block;
+
+    padding: 7px 14px;
+
+    border: 1px solid #00aaff;
+    border-radius: 30px;
+
+    color: #00aaff;
+
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+
+    margin-bottom: 20px;
+}
+
+.hero h1 {
+    font-size: clamp(40px, 7vw, 70px);
+    line-height: 1.05;
+
+    margin-bottom: 20px;
+}
+
+.hero p {
+    color: #aeb5bf;
+    font-size: 17px;
+
+    max-width: 600px;
+    margin: 0 auto 30px;
+}
+
+.hero-button {
+    display: inline-block;
+
+    padding: 13px 25px;
+
+    background: #00aaff;
+    color: #ffffff;
+
+    text-decoration: none;
+
+    border-radius: 7px;
+
+    font-weight: 700;
+
+    transition: 0.3s;
+}
+
+.hero-button:hover {
+    background: #008dcc;
+    transform: translateY(-2px);
+}
+
+
+/* =========================
+   MAIN
+   ========================= */
+
+main {
+    padding: 80px 7%;
+}
+
+.section-heading {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.section-heading span {
+    color: #00aaff;
+
+    font-size: 12px;
+    font-weight: 800;
+
+    letter-spacing: 2px;
+}
+
+.section-heading h2 {
+    font-size: 38px;
+    margin: 8px 0;
+}
+
+.section-heading p {
+    color: #929aa5;
+}
+
+
+/* =========================
+   PRICE GRID
+   ========================= */
+
+.price-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(250px, 1fr));
+
+    gap: 20px;
+
+    max-width: 1250px;
+    margin: auto;
+}
+
+
+/* =========================
+   TOOL CARD
+   ========================= */
+
+.tool-card {
+    position: relative;
+
+    background: #0e131a;
+
+    border: 1px solid #202832;
+
+    border-radius: 12px;
+
+    padding: 25px;
+
+    overflow: hidden;
+
+    transition:
+        transform 0.3s,
+        border-color 0.3s,
+        box-shadow 0.3s;
+}
+
+.tool-card:hover {
+    transform: translateY(-5px);
+
+    border-color: #00aaff;
+
+    box-shadow:
+        0 10px 35px rgba(0, 170, 255, 0.12);
+}
+
+.tool-number {
+    color: #36404c;
+
+    font-size: 13px;
+    font-weight: 800;
+
+    margin-bottom: 12px;
+}
+
+.tool-card h3 {
+    font-size: 18px;
+
+    margin-bottom: 8px;
+
+    color: #ffffff;
+}
+
+.tool-card p {
+    color: #89929e;
+
+    font-size: 13px;
+
+    min-height: 42px;
+}
+
+.tool-card p strong {
+    color: #cbd2da;
+}
+
+.price {
+    margin-top: 20px;
+
+    color: #00aaff;
+
+    font-size: 24px;
+    font-weight: 900;
+}
+
+
+/* =========================
+   CONTACT CTA
+   ========================= */
+
+.contact-cta {
+    margin: 30px 7% 80px;
+
+    padding: 45px;
+
+    background: #0d141c;
+
+    border: 1px solid #1d2934;
+
+    border-radius: 15px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 30px;
+}
+
+.contact-cta span {
+    color: #00aaff;
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    letter-spacing: 2px;
+}
+
+.contact-cta h2 {
+    font-size: 27px;
+
+    margin: 5px 0;
+}
+
+.contact-cta p {
+    color: #929aa5;
+
+    font-size: 14px;
+}
+
+.whatsapp-button {
+    flex-shrink: 0;
+
+    display: inline-block;
+
+    padding: 14px 22px;
+
+    background: #00aaff;
+
+    color: #ffffff;
+
+    text-decoration: none;
+
+    border-radius: 7px;
+
+    font-weight: 700;
+
+    transition: 0.3s;
+}
+
+.whatsapp-button:hover {
+    background: #008dcc;
+}
+
+
+/* =========================
+   FOOTER
+   ========================= */
+
+footer {
+    text-align: center;
+
+    padding: 45px 20px;
+
+    border-top: 1px solid #1b222b;
+
+    background: #07090d;
+}
+
+.footer-logo {
+    font-size: 22px;
+    font-weight: 900;
+
+    margin-bottom: 8px;
+}
+
+.footer-logo span {
+    color: #00aaff;
+}
+
+footer p {
+    color: #77818d;
+
+    font-size: 13px;
+
+    margin: 5px;
+}
+
+footer .priority {
+    color: #00aaff;
+
+    font-weight: 700;
+
+    margin-top: 15px;
+}
+
+footer .copyright {
+    margin-top: 20px;
+
+    font-size: 12px;
+}
+
+
+/* =========================
+   MOBILE
+   ========================= */
+
+@media (max-width: 750px) {
+
+    .header {
+        padding: 16px 5%;
+
+        flex-direction: column;
+
+        gap: 15px;
+    }
+
+    .navbar {
+        width: 100%;
+
+        justify-content: center;
+
+        gap: 15px;
+
+        flex-wrap: wrap;
+    }
+
+    .navbar a {
+        font-size: 12px;
+    }
+
+    .hero {
+        min-height: 380px;
+
+        padding: 60px 20px;
+    }
+
+    .hero h1 {
+        font-size: 43px;
+    }
+
+    .hero p {
+        font-size: 15px;
+    }
+
+    main {
+        padding: 60px 5%;
+    }
+
+    .section-heading h2 {
+        font-size: 30px;
+    }
+
+    .price-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-cta {
+        margin: 20px 5% 60px;
+
+        padding: 30px 25px;
+
+        flex-direction: column;
+
+        align-items: flex-start;
+    }
+
+    .whatsapp-button {
+        width: 100%;
+
+        text-align: center;
+    }
+}
