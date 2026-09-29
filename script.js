@@ -71,26 +71,6 @@ function addChipsetGuidance() {
 
 addChipsetGuidance();
 
-function addAskPriceLinks() {
-  document.querySelectorAll('.tool-card').forEach((card) => {
-    const meta = card.querySelector('.tool-meta');
-    const toolName = card.querySelector('h3')?.textContent.trim();
-    if (!meta || !toolName || meta.querySelector('.ask-price')) return;
-
-    const askPrice = document.createElement('a');
-    askPrice.className = 'ask-price';
-    askPrice.href = whatsappUrl(`Hello REND, how much is ${toolName} for rent and how long will it be in use or valid?`);
-    askPrice.target = '_blank';
-    askPrice.rel = 'noopener noreferrer';
-    askPrice.textContent = 'Ask price';
-
-    const rentLink = meta.querySelector('a[href="rent-tool.html"]');
-    meta.insertBefore(askPrice, rentLink);
-  });
-}
-
-addAskPriceLinks();
-
 detailCards.forEach((card) => {
   const openDetails = (event) => {
     if (event.target.closest('a, button')) return;
@@ -210,11 +190,25 @@ if (modalAction) modalAction.addEventListener('click', (event) => {
   if (rentSection) rentSection.scrollIntoView({ behavior: 'smooth' });
 });
 
+function buildRentalRequestMessage(formData) {
+  const tool = formData.get('tool') || 'Not specified';
+  const email = formData.get('email') || 'Not provided';
+  const message = (formData.get('message') || '').trim();
+
+  const details = message
+    ? `\n\nJob details: ${message}`
+    : '';
+
+  return `Hi REND, I want to rent a tool.\n\nTool: ${tool}\nEmail: ${email}${details}\n\nPlease confirm availability and tell me the next step.`;
+}
+
 if (rentalForm) rentalForm.addEventListener('submit', (event) => {
   event.preventDefault();
   const formData = new FormData(rentalForm);
   const tool = formData.get('tool');
-  rentalStatus.textContent = `Thanks, we’ve got your request for ${tool || 'your tool'}. We’ll be in touch soon.`;
-  window.open(whatsappUrl(`Hello REND, I would like to request ${tool || 'a tool rental'}.`), '_blank', 'noopener');
+  const message = buildRentalRequestMessage(formData);
+
+  rentalStatus.textContent = `Thanks, we’ve received your request for ${tool || 'your tool'}. We’ll contact you shortly.`;
+  window.open(whatsappUrl(message), '_blank', 'noopener');
   rentalForm.reset();
 });
