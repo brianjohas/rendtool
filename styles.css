@@ -93,6 +93,13 @@ body{
   font-weight:700;
   font-size:22px;
   letter-spacing:-.08em}
+.brand-logo{
+  display:block;
+  width:auto;
+  max-width:180px;
+  height:38px;
+  object-fit:contain;
+  filter:drop-shadow(0 0 18px rgba(215,242,91,.12))}
 .brand-mark{
   display:grid;
   place-items:center;
@@ -202,8 +209,9 @@ h1 em,h2 em{
   margin-bottom:36px}
 .hero-actions{
   display:flex;
+  flex-wrap:wrap;
   align-items:center;
-  gap:28px}
+  gap:18px 22px}
 .button{
   display:inline-flex;
   align-items:center;
@@ -218,13 +226,41 @@ h1 em,h2 em{
 .button-primary{
   background:var(--lime);
   color:var(--ink)}
+.button-secondary{
+  background:transparent;
+  color:var(--ink);
+  border:1px solid rgba(215,242,91,.4)}
 .text-link{
   border-bottom:1px solid var(--muted);
   padding-bottom:4px}
 .text-link span{
   margin-left:8px}
+.hero-stats{
+  display:grid;
+  grid-template-columns:repeat(3, minmax(0, 1fr));
+  gap:16px;
+  margin-top:34px;
+  max-width:520px}
+.stat-item{
+  background:rgba(17, 19, 17, 0.65);
+  border:1px solid rgba(215,242,91,.12);
+  padding:18px 14px;
+  display:flex;
+  flex-direction:column;
+  gap:8px}
+.stat-number{
+  font-size:clamp(22px, 3vw, 38px);
+  font-weight:700;
+  line-height:1;
+  letter-spacing:-.06em;
+  color:var(--lime)}
+.stat-label{
+  font:11px var(--font-mono);
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  color:var(--muted)}
 .hero-note{
-  margin-top:68px;
+  margin-top:34px;
   font:11px var(--font-mono);
   color:var(--muted)}
 .hero-note span{
@@ -238,14 +274,50 @@ h1 em,h2 em{
   overflow:hidden;
   display:grid;
   place-items:center;
-  transform:rotate(2deg)}
+  transform:none;
+  border-radius:0}
+.hero-banner{
+  background:linear-gradient(135deg, rgba(17,19,17,1), rgba(17,19,17,.9));
+  border:1px solid rgba(215,242,91,.15);
+  box-shadow:none !important;
+  transform:none !important;
+  rotate:0deg;
+  filter:none}
+.hero-banner img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  display:block;
+  transform:none !important;
+  border-radius:0;
+  box-shadow:none !important;
+  filter:none;
+  background:rgba(17,19,17,.9)}
+.banner-overlay-text{
+  position:absolute;
+  top:18px;
+  left:50%;
+  transform:translateX(-50%);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:clamp(20px, 3vw, 54px);
+  font-weight:700;
+  letter-spacing:-0.08em;
+  color:rgba(215,242,91,0.95);
+  text-transform:uppercase;
+  z-index:2;
+  pointer-events:none;
+  text-shadow:0 0 18px rgba(215,242,91,0.2);
+  white-space:nowrap}
 .hero-visual:before{
   content:"";
   position:absolute;
   width:540px;
   height:540px;
   border:1px solid rgba(23,25,22,.25);
-  border-radius:50%}
+  border-radius:50%;
+  display:none}
 .visual-label{
   position:absolute;
   top:22px;
@@ -420,10 +492,19 @@ h1 em,h2 em{
   border-radius:50%;
   background:transparent;
   color:var(--lime);
-  cursor:pointer}
+  cursor:pointer;
+  transition:all .2s ease}
 .search-toggle:hover{
   background:var(--lime);
   color:var(--ink)}
+.tool-search-open .search-toggle{
+  width:42px;
+  height:42px;
+  border-radius:999px;
+  background:var(--lime);
+  color:var(--ink);
+  border-color:transparent;
+  box-shadow:0 0 0 6px rgba(215,242,91,.12)}
 .tool-search input{
   width:0;
   opacity:0;

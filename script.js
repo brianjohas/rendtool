@@ -14,7 +14,34 @@ const modalClose = document.querySelector('.modal-close');
 const availableCount = document.querySelector('#available-count');
 const unavailableCount = document.querySelector('#unavailable-count');
 const detailCards = document.querySelectorAll('.tool-card[data-page]');
-const whatsappNumber = '265998502637';
+const homeStatNumbers = document.querySelectorAll('.stat-number');
+const whatsappNumber = '265993347979';
+
+function animateCounter(element) {
+  const min = Number(element.dataset.min || 0);
+  const max = Number(element.dataset.max || min);
+  const suffix = element.dataset.suffix || '';
+  const target = Math.floor(Math.random() * (max - min + 1)) + min;
+  const duration = 1200;
+  const start = performance.now();
+
+  function update(now) {
+    const progress = Math.min((now - start) / duration, 1);
+    const eased = 1 - Math.pow(1 - progress, 3);
+    const currentValue = Math.round(min + (target - min) * eased);
+    element.textContent = `${currentValue}${suffix}`;
+
+    if (progress < 1) {
+      requestAnimationFrame(update);
+    } else {
+      element.textContent = `${target}${suffix}`;
+    }
+  }
+
+  requestAnimationFrame(update);
+}
+
+homeStatNumbers.forEach((stat) => animateCounter(stat));
 
 function whatsappUrl(message) {
   return `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
@@ -24,7 +51,7 @@ function addFloatingWhatsappButton() {
   if (document.querySelector('.whatsapp')) return;
   const button = document.createElement('a');
   button.className = 'whatsapp';
-  button.href = 'https://wa.me/265998502637';
+  button.href = 'https://wa.me/265993347979';
   button.target = '_blank';
   button.rel = 'noopener noreferrer';
   button.setAttribute('aria-label', 'Chat with REND on WhatsApp');
@@ -193,13 +220,14 @@ if (modalAction) modalAction.addEventListener('click', (event) => {
 function buildRentalRequestMessage(formData) {
   const tool = formData.get('tool') || 'Not specified';
   const email = formData.get('email') || 'Not provided';
+  const situation = formData.get('situation') || 'Not specified';
   const message = (formData.get('message') || '').trim();
 
   const details = message
     ? `\n\nJob details: ${message}`
     : '';
 
-  return `Hi REND, I want to rent a tool.\n\nTool: ${tool}\nEmail: ${email}${details}\n\nPlease confirm availability and tell me the next step.`;
+  return `Hi REND, I want to rent a tool.\n\nTool: ${tool}\nEmail: ${email}\nCurrent situation: ${situation}${details}\n\nPlease confirm availability and tell me the next step.`;
 }
 
 if (rentalForm) rentalForm.addEventListener('submit', (event) => {
@@ -207,8 +235,9 @@ if (rentalForm) rentalForm.addEventListener('submit', (event) => {
   const formData = new FormData(rentalForm);
   const tool = formData.get('tool');
   const message = buildRentalRequestMessage(formData);
+  const emergencyNote = 'If you are on emergency please try to beep or call this personal number +265984820687 for us to be online to help you.';
 
-  rentalStatus.textContent = `Thanks, we’ve received your request for ${tool || 'your tool'}. We’ll contact you shortly.`;
+  rentalStatus.textContent = `Thanks, we’ve received your request for ${tool || 'your tool'}. We’ll contact you shortly. NOTE: ${emergencyNote}`;
   window.open(whatsappUrl(message), '_blank', 'noopener');
   rentalForm.reset();
 });
