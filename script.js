@@ -17,6 +17,35 @@ const detailCards = document.querySelectorAll('.tool-card[data-page]');
 const homeStatNumbers = document.querySelectorAll('.stat-number');
 const whatsappNumber = '265993347979';
 
+function openToolRentalWhatsapp(tool) {
+  const message = `Hello REND! I need to rent ${tool}. Please confirm the availability and let me know.`;
+  window.open(whatsappUrl(message), '_blank', 'noopener');
+}
+
+function bindToolRentalLink(link) {
+  if (link.classList.contains('rend-button') && link.textContent.toLowerCase().includes('waitlist')) return;
+
+  link.addEventListener('click', (event) => {
+    const heading = link.closest('.tool-card')?.querySelector('h3');
+    const headingCopy = heading?.cloneNode(true);
+    headingCopy?.querySelector('.latest-version')?.remove();
+    const tool = headingCopy?.textContent.trim()
+      || link.closest('tr')?.querySelector('.tool-name')?.textContent.trim()
+      || document.querySelector('.tool-detail h1')?.textContent.trim();
+    if (!tool) return;
+
+    event.preventDefault();
+    openToolRentalWhatsapp(tool);
+  });
+}
+
+document.querySelectorAll('.tool-card .tool-meta a:not(.read-more), .rend-me, .rend-button').forEach(bindToolRentalLink);
+
+const toolDetailHeaderCta = document.querySelector('.tool-detail')
+  ? document.querySelector('.site-header .header-cta')
+  : null;
+if (toolDetailHeaderCta) bindToolRentalLink(toolDetailHeaderCta);
+
 function animateCounter(element) {
   const min = Number(element.dataset.min || 0);
   const max = Number(element.dataset.max || min);
@@ -61,6 +90,42 @@ function addFloatingWhatsappButton() {
 
 
 addFloatingWhatsappButton();
+
+function addPaymentMethods() {
+  const footer = document.querySelector('.site-footer');
+  const script = [...document.scripts].find((item) => item.src.endsWith('/script.js'));
+  if (!footer || footer.querySelector('.payment-methods') || !script) return;
+
+  const methods = [
+    ['Airtel Money', 'Airtel.png'],
+    ['Mukuru', 'mukuru.png'],
+    ['TNM Mpamba', 'tnm.png'],
+    ['Mama Money', 'mama money.png']
+  ];
+  const section = document.createElement('section');
+  section.className = 'payment-methods';
+  section.setAttribute('aria-label', 'Supported payment methods');
+
+  const label = document.createElement('span');
+  label.className = 'payment-methods-label';
+  label.textContent = 'Supported payment methods';
+  section.appendChild(label);
+
+  const logos = document.createElement('div');
+  logos.className = 'payment-method-logos';
+  methods.forEach(([name, filename]) => {
+    const image = document.createElement('img');
+    image.src = new URL(`images/${filename}`, script.src).href;
+    image.alt = name;
+    image.loading = 'lazy';
+    image.decoding = 'async';
+    logos.appendChild(image);
+  });
+  section.appendChild(logos);
+  footer.prepend(section);
+}
+
+addPaymentMethods();
 
 function addLatestVersionBadges() {
   document.querySelectorAll('.tool-card').forEach((card) => {
@@ -224,10 +289,10 @@ function buildRentalRequestMessage(formData) {
   const message = (formData.get('message') || '').trim();
 
   const details = message
-    ? `\n\nJob details: ${message}`
+    ? `\nJob: ${message}`
     : '';
 
-  return `Hi REND, I want to rent a tool.\n\nTool: ${tool}\nEmail: ${email}\nCurrent situation: ${situation}${details}\n\nPlease confirm availability and tell me the next step.`;
+  return `Hello REND! I need to rent ${tool}. Please confirm the availability and let me know.\nSituation: ${situation}\nEmail: ${email}${details}`;
 }
 
 if (rentalForm) rentalForm.addEventListener('submit', (event) => {

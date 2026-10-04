@@ -145,7 +145,7 @@ body{
 .menu-toggle{
   display:none}
 .section-pad{
-  padding:120px 9vw}
+  padding:32px 24x}
 .page-hero.section-pad{
   padding-bottom:48px}
 .eyebrow{
@@ -225,6 +225,7 @@ h1 em,h2 em{
   cursor:pointer}
 .button-primary{
   background:var(--lime);
+  text-align: center;
   color:var(--ink)}
 .button-secondary{
   background:transparent;
@@ -438,15 +439,8 @@ h1 em,h2 em{
   margin-bottom:32px}
 .catalog.page-section{
   padding-top:24px;
-  padding-bottom:80px}
-.tool-advice{
   overflow:hidden;
-  margin-bottom:12px;
-  border:1px solid var(--line);
-  background:var(--orange);
-  color:var(--ink);
-  padding:12px 0;
-  white-space:nowrap}
+  padding-bottom:80px}
 .tool-advice-track{
   display:flex;
   align-items:center;
@@ -800,24 +794,50 @@ h1 em,h2 em{
   padding:30px 96px 30px 5vw;
   display:grid;
   grid-template-columns:auto 1fr auto;
-  grid-template-rows:auto auto;
+  grid-template-rows:auto auto auto;
   column-gap:24px;
   row-gap:12px;
   align-items:center;
   color:var(--muted);
   font-size:12px}
+.payment-methods{
+  grid-column:1 / -1;
+  grid-row:1;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:10px;
+  padding-bottom:12px;
+  border-bottom:1px solid var(--line)}
+.payment-methods-label{
+  color:var(--paper);
+  font:10px var(--font-mono);
+  text-transform:uppercase}
+.payment-method-logos{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:12px}
+.payment-method-logos img{
+  width:98px;
+  height:42px;
+  padding:4px 7px;
+  border-radius:3px;
+  background:#fff;
+  object-fit:contain}
 .site-footer>.brand{
   grid-column:1;
-  grid-row:1 / span 2}
+  grid-row:2 / span 2}
 .site-footer>p{
   grid-column:2;
-  grid-row:1}
+  grid-row:2}
 .site-footer>.footer-links{
   grid-column:2;
-  grid-row:2}
+  grid-row:3}
 .footer-pages{
   grid-column:3;
-  grid-row:1;
+  grid-row:2;
   display:flex;
   align-items:center;
   justify-content:flex-end;
@@ -934,7 +954,7 @@ h1 em,h2 em{
   font:500 12px var(--font-mono)}
 .site-footer>.mono{
   grid-column:3;
-  grid-row:2}
+  grid-row:3}
 .site-footer .brand{
   color:var(--paper);
   font-size:18px}
@@ -997,7 +1017,7 @@ h1 em,h2 em{
 .header-cta{
   display:none}
 .section-pad{
-  padding:85px 6vw}
+  padding:32px 24px}
 .hero{
   grid-template-columns:1fr;
   min-height:auto;
@@ -1044,7 +1064,7 @@ h1 em,h2 em{
 .main-nav.open{
   display:flex}
 .section-pad{
-  padding:72px 6vw}
+  padding:32px 24px}
 .hero{
   padding-top:75px}
 .hero-visual{
@@ -1113,29 +1133,35 @@ h1 em,h2 em{
 .site-footer{
   padding-right:80px;
   grid-template-columns:1fr auto;
-  grid-template-rows:auto auto auto}
+  grid-template-rows:auto auto auto auto auto}
+.payment-methods{
+  grid-column:1 / span 2;
+  grid-row:1}
 .site-footer>.brand{
   grid-column:1;
-  grid-row:1 / span 2}
+  grid-row:2 / span 2}
 .site-footer p{
   display:none}
 .footer-links{
   grid-column:2;
-  grid-row:1 / span 2;
+  grid-row:2 / span 2;
   align-items:flex-start;
   flex-direction:column;
   gap:8px}
 .footer-pages{
   grid-column:1 / span 2;
-  grid-row:3;
+  grid-row:4;
   justify-content:flex-start;
   flex-wrap:wrap;
   white-space:normal;
   gap:8px 13px}
 .site-footer>.mono{
   grid-column:1 / span 2;
-  grid-row:4}
+  grid-row:5}
+
 }
+
+
 @media(max-width:370px){
   .tool-grid{
   grid-template-columns:1fr}
@@ -1347,5 +1373,3 @@ h1 em,h2 em{
   right:14px;
   bottom:14px}
 }
-
-
