@@ -1373,3 +1373,36 @@ h1 em,h2 em{
   right:14px;
   bottom:14px}
 }
+
+/* --- EDGE TO EDGE ON PHONE --- */
+@media (max-width: 768px) {
+  /* Remove outer page padding that creates side gaps */
+  .section-pad {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  /* Keep toolbar text with small padding, but grid edge to edge */
+  .catalog-toolbar, .page-hero {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+
+  /* The grid itself - no padding, touches screen edges */
+  .tool-grid {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    gap: 1px !important; /* tiny line between cards like your screenshot */
+    grid-template-columns: 1fr 1fr !important; /* 2 cards per row */
+  }
+
+  /* Cards flat, no rounded corners on phone */
+  .tool-card {
+    border-radius: 0 !important;
+    margin: 0 !important;
+    border-left: 0 !important;
+    border-right: 0 !important;
+  }
+}
