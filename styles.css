@@ -145,7 +145,7 @@ body{
 .menu-toggle{
   display:none}
 .section-pad{
-  padding:32px 24x}
+  padding:32px 2vw}
 .page-hero.section-pad{
   padding-bottom:48px}
 .eyebrow{
@@ -1404,5 +1404,14 @@ h1 em,h2 em{
     margin: 0 !important;
     border-left: 0 !important;
     border-right: 0 !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero.section-pad,
+  .rent-section.section-pad,
+  .contact-section.section-pad {
+    padding-left: 24px !important;
+    padding-right: 24px !important;
   }
 }
